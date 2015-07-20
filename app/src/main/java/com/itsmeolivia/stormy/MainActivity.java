@@ -1,13 +1,12 @@
 package com.itsmeolivia.stormy;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,11 +33,11 @@ public class MainActivity extends ActionBarActivity {
 
     @Bind(R.id.timeLabel) TextView mTimeLabel;
     @Bind(R.id.temperatureLabel) TextView mTemperatureLabel;
-    @Bind(R.id.humidityLabel) TextView mHumidityLabel;
+    @Bind(R.id.humidityValue) TextView mHumidityValue;
     @Bind(R.id.locationLabel) TextView mLocationLabel;
-    @Bind(R.id.precipLabel) TextView mPrecipLabel;
+    @Bind(R.id.precipValue) TextView mPrecipValue;
     @Bind(R.id.summaryLabel) TextView mSummaryLabel;
-    
+
     @Bind(R.id.iconImageView) ImageView mIconImage;
 
     @Override
@@ -76,6 +75,12 @@ public class MainActivity extends ActionBarActivity {
 
                         if (response.isSuccessful()) {
                             mCurrentWeather = getCurrentDetails(jsonData);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    updateDisplay();
+                                }
+                            });
 
                         }
                         else {
@@ -96,6 +101,18 @@ public class MainActivity extends ActionBarActivity {
 
             Toast.makeText(this, R.string.networkunavailable, Toast.LENGTH_LONG).show();
         }
+
+    }
+
+    private void updateDisplay() {
+        mTemperatureLabel.setText(mCurrentWeather.getTemperature() + "");
+        mTimeLabel.setText("At " + mCurrentWeather.getFormattedTime() + " it will be");
+        mHumidityValue.setText(mCurrentWeather.getHumidity() + "");
+        mPrecipValue.setText(mCurrentWeather.getPrecipChance() + "%");
+        mSummaryLabel.setText(mCurrentWeather.getSummary());
+
+        Drawable drawble = getResources().getDrawable(mCurrentWeather.getIconId());
+        mIconImage.setImageDrawable(drawble);
 
     }
 

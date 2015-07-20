@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="error_title">Oops sorry!</string>
+    <string name="error_message">There was an error. Pls try again</string>
+    <string name="error_OKbutton">OK</string>
+    <string name="networkunavailable">Network is unavailable</string>
 </resources>

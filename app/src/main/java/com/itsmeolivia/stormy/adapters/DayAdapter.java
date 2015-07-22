@@ -1,6 +1,7 @@
 package com.itsmeolivia.stormy.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import com.itsmeolivia.stormy.weather.Day;
  * Created by olivia on 7/21/15.
  */
 public class DayAdapter extends BaseAdapter {
+
+    public static final String TAG = "";
 
     private Context mContext;
     private Day[] mDays;
@@ -62,7 +65,9 @@ public class DayAdapter extends BaseAdapter {
         Day day = mDays[position];
 
         holder.iconImageView.setImageResource(day.getIconId());
-        holder.temperatureLabel.setText(day.getTemperatureMax() + "");
+        try { holder.temperatureLabel.setText(day.getTemperatureMax() + "");
+        } catch (Exception e){ Log.e(TAG, "Fatal Exception", e); }
+
         holder.dayLabel.setText(day.getDayOfWeek());
 
 

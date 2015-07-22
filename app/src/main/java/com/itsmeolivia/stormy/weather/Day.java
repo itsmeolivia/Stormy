@@ -1,5 +1,9 @@
 package com.itsmeolivia.stormy.weather;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 /**
  * Created by olivia on 7/21/15.
  */
@@ -20,8 +24,8 @@ public class Day {
         mTime = time;
     }
 
-    public double getTemperatureMax() {
-        return mTemperatureMax;
+    public int getTemperatureMax() {
+        return (int) Math.round(mTemperatureMax);
     }
 
     public void setTemperatureMax(double temperatureMax) {
@@ -58,5 +62,17 @@ public class Day {
 
     public void setTimeZone(String timeZone) {
         mTimeZone = timeZone;
+    }
+
+    public int getIconId() {
+
+        return Forecast.getIconId(getIcon());
+    }
+
+    public String getDayOfWeek() {
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE");
+        formatter.setTimeZone(TimeZone.getTimeZone(mTimeZone));
+        Date datetime = new Date(mTime * 1000);
+        return formatter.format(datetime);
     }
 }

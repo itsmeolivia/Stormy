@@ -14,7 +14,6 @@ public class Day implements Parcelable{
 
     private long mTime;
     private double mTemperatureMax;
-    private double mTemperatureMin;
     private String mSummary;
     private String mIcon;
     private String mTimeZone;
@@ -35,14 +34,6 @@ public class Day implements Parcelable{
 
     public void setTemperatureMax(double temperatureMax) {
         mTemperatureMax = temperatureMax;
-    }
-
-    public double getTemperatureMin() {
-        return mTemperatureMin;
-    }
-
-    public void setTemperatureMin(double temperatureMin) {
-        mTemperatureMin = temperatureMin;
     }
 
     public String getSummary() {

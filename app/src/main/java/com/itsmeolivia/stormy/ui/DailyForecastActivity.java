@@ -7,7 +7,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.itsmeolivia.stormy.R;
 import com.itsmeolivia.stormy.adapters.DayAdapter;
@@ -31,5 +33,4 @@ public class DailyForecastActivity extends ListActivity {
         DayAdapter adapter = new DayAdapter(this, mDays);
         setListAdapter(adapter);
     }
-
 }
